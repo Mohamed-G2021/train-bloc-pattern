@@ -1,23 +1,24 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:train_cubit/cubit/counter_states.dart';
 
 class CounterCubit extends Cubit<CounterStates> {
-  int counter = 0;
+  int itemCounter = 0;
 
-  CounterCubit(initialState) : super(CounterIncrementState());
+  CounterCubit() : super(CounterIncrementState());
 
-  increaseCounter(counter) {
-    counter++;
+  static CounterCubit get(context) => BlocProvider.of(context);
+  increaseCounter() {
+    itemCounter++;
     emit(CounterIncrementState());
   }
 
-  decreaseCounter(counter) {
-    counter--;
+  decreaseCounter() {
+    itemCounter--;
     emit(CounterDecrementState());
   }
 
-  resetCounter(counter) {
-    counter = 0;
+  resetCounter() {
+    itemCounter = 0;
     emit(CounterResetState());
   }
 }
